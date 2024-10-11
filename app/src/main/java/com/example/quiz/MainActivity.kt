@@ -7,7 +7,6 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.quiz.R
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.BufferedReader
@@ -90,14 +89,20 @@ class MainActivity : AppCompatActivity() {
             submitButton.isEnabled = false
 
             currentQuestionIndex++
+
+            // Ezt a részt itt helyezd el
             if (currentQuestionIndex < questions.size) {
                 submitButton.text = "Következő"
+                submitButton.isEnabled = true // A következő kérdésnél ismét engedélyezzük a gombot
+                showQuestion() // Új kérdést jelenítünk meg
             } else {
                 submitButton.text = "Befejezés"
-                showScore()
+                showScore() // Ha nincs több kérdés, mutatjuk a pontszámot
+                submitButton.isEnabled = false // A kvíz vége után letiltjuk a gombot
             }
         }
     }
+
 
     private fun showScore() {
         resultTextView.text = "Összpontszámod: $score/${questions.size}"
