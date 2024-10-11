@@ -1,0 +1,12 @@
+[
+  {
+    "question": "Melyik a legnagyobb bolygó a Naprendszerben?",
+    "options": ["Föld", "Jupiter", "Mars", "Venusz"],
+    "answer": "Jupiter"
+  },
+  {
+    "question": "Mi a fővárosa Franciaországnak?",
+    "options": ["Berlin", "Madrid", "Párizs", "Róma"],
+    "answer": "Párizs"
+  }
+]

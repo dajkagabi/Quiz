@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="questionTextView" type="id" />
+    <item name="optionsRadioGroup" type="id" />
+    <item name="submitButton" type="id" />
+    <item name="resultTextView" type="id" />
+    <item name="restartButton" type="id" />
+</resources>

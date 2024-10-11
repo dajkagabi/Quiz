@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Quiz</string>
+    <string name="k_ld_s">Küldés</string>
+    <string name="jra_kezd_s">Újra kezdés</string>
+</resources>
