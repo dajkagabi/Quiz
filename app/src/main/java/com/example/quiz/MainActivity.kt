@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var questions: List<Question>
     private var currentQuestionIndex = 0
     private var score = 0
-    private var isQuizFinished = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,12 +39,7 @@ class MainActivity : AppCompatActivity() {
         showQuestion()
 
         submitButton.setOnClickListener {
-            if (!isQuizFinished) {
-                checkAnswer()
-            } else {
-                // Ha vége a quiznek, ne lehessen többször rányomni
-                resetQuiz()
-            }
+            checkAnswer()
         }
 
         restartButton.setOnClickListener {
@@ -63,19 +57,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showQuestion() {
-        val question = questions[currentQuestionIndex]
-        questionTextView.text = question.question
-        optionsRadioGroup.removeAllViews()
+        if (currentQuestionIndex < questions.size) {
+            val question = questions[currentQuestionIndex]
+            questionTextView.text = question.question
+            optionsRadioGroup.removeAllViews()
 
-        for (option in question.options) {
-            val radioButton = RadioButton(this)
-            radioButton.text = option
-            optionsRadioGroup.addView(radioButton)
+            for (option in question.options) {
+                val radioButton = RadioButton(this)
+                radioButton.text = option
+                optionsRadioGroup.addView(radioButton)
+            }
+
+            resultTextView.visibility = View.GONE
+            restartButton.visibility = View.GONE
+            submitButton.isEnabled = true
+            submitButton.text = "Következő"
+        } else {
+            showScore()
         }
-
-        resultTextView.visibility = View.GONE
-        submitButton.isEnabled = true
-        submitButton.text = if (currentQuestionIndex < questions.size - 1) "Következő" else "Befejezés"
     }
 
     private fun checkAnswer() {
@@ -92,33 +91,28 @@ class MainActivity : AppCompatActivity() {
             }
 
             resultTextView.visibility = View.VISIBLE
+            submitButton.isEnabled = false
 
-            // Ha van még kérdés, megyünk tovább, ha nincs, akkor befejezzük a quizt
-            if (currentQuestionIndex < questions.size - 1) {
-                currentQuestionIndex++
-                showQuestion() // Következő kérdés megjelenítése
-            } else {
-                showScore() // Vége a quiznek
-                isQuizFinished = true
-                submitButton.text = "Újra"
-            }
+            // Növeljük a currentQuestionIndex-et, hogy a következő kérdés megjelenjen
+            currentQuestionIndex++
+            // Megjelenítjük a következő kérdést
+            showQuestion()
         } else {
-            resultTextView.text = "Kérlek, válassz egy lehetőséget!"
+            resultTextView.text = "Kérlek válassz egy választ!"
             resultTextView.visibility = View.VISIBLE
         }
     }
 
     private fun showScore() {
         resultTextView.text = "Összpontszámod: $score/${questions.size}"
-        resultTextView.visibility = View.VISIBLE
-        submitButton.isEnabled = true // Az újrakezdés engedélyezése
+        restartButton.visibility = View.VISIBLE
+        submitButton.visibility = View.GONE // Rejtjük el a 'Következő' gombot a kvíz végén
     }
 
     private fun resetQuiz() {
         currentQuestionIndex = 0
         score = 0
-        isQuizFinished = false
-        submitButton.text = "Következő"
-        showQuestion() // Vissza az első kérdéshez
+        submitButton.visibility = View.VISIBLE // Megjelenítjük a 'Következő' gombot újra
+        showQuestion()
     }
 }
