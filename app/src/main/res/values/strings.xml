@@ -2,4 +2,8 @@
     <string name="app_name">Quiz</string>
     <string name="k_ld_s">Küldés</string>
     <string name="jra_kezd_s">Újra kezdés</string>
+    <string name="k_rd_s">Kérdés</string>
+    <string name="v_lasz_elk_ld_se">Válasz elküldése</string>
+    <string name="eredm_ny">Eredmény</string>
+    <string name="jra">Újra</string>
 </resources>

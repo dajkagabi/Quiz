@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
             currentQuestionIndex++
 
-            // Ezt a részt itt helyezd el
+
             if (currentQuestionIndex < questions.size) {
                 submitButton.text = "Következő"
                 submitButton.isEnabled = true // A következő kérdésnél ismét engedélyezzük a gombot
