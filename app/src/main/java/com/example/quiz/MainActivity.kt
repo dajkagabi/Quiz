@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var questions: List<Question>
     private var currentQuestionIndex = 0
     private var score = 0
+    private var isQuizFinished = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,12 @@ class MainActivity : AppCompatActivity() {
         showQuestion()
 
         submitButton.setOnClickListener {
-            checkAnswer()
+            if (!isQuizFinished) {
+                checkAnswer()
+            } else {
+                // Ha vége a quiznek, ne lehessen többször rányomni
+                resetQuiz()
+            }
         }
 
         restartButton.setOnClickListener {
@@ -68,8 +74,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         resultTextView.visibility = View.GONE
-        restartButton.visibility = View.GONE
         submitButton.isEnabled = true
+        submitButton.text = if (currentQuestionIndex < questions.size - 1) "Következő" else "Befejezés"
     }
 
     private fun checkAnswer() {
@@ -86,32 +92,33 @@ class MainActivity : AppCompatActivity() {
             }
 
             resultTextView.visibility = View.VISIBLE
-            submitButton.isEnabled = false
 
-            currentQuestionIndex++
-
-
-            if (currentQuestionIndex < questions.size) {
-                submitButton.text = "Következő"
-                submitButton.isEnabled = true // A következő kérdésnél ismét engedélyezzük a gombot
-                showQuestion() // Új kérdést jelenítünk meg
+            // Ha van még kérdés, megyünk tovább, ha nincs, akkor befejezzük a quizt
+            if (currentQuestionIndex < questions.size - 1) {
+                currentQuestionIndex++
+                showQuestion() // Következő kérdés megjelenítése
             } else {
-                submitButton.text = "Befejezés"
-                showScore() // Ha nincs több kérdés, mutatjuk a pontszámot
-                submitButton.isEnabled = false // A kvíz vége után letiltjuk a gombot
+                showScore() // Vége a quiznek
+                isQuizFinished = true
+                submitButton.text = "Újra"
             }
+        } else {
+            resultTextView.text = "Kérlek, válassz egy lehetőséget!"
+            resultTextView.visibility = View.VISIBLE
         }
     }
 
-
     private fun showScore() {
         resultTextView.text = "Összpontszámod: $score/${questions.size}"
-        restartButton.visibility = View.VISIBLE
+        resultTextView.visibility = View.VISIBLE
+        submitButton.isEnabled = true // Az újrakezdés engedélyezése
     }
 
     private fun resetQuiz() {
         currentQuestionIndex = 0
         score = 0
-        showQuestion()
+        isQuizFinished = false
+        submitButton.text = "Következő"
+        showQuestion() // Vissza az első kérdéshez
     }
 }

@@ -5,4 +5,5 @@
     <item name="submitButton" type="id" />
     <item name="resultTextView" type="id" />
     <item name="restartButton" type="id" />
+    <item name="optionsGridLayout" type="id" />
 </resources>

@@ -1,12 +1,102 @@
 [
   {
-    "question": "Melyik a legnagyobb bolygó a Naprendszerben?",
-    "options": ["Föld", "Jupiter", "Mars", "Venusz"],
-    "answer": "Jupiter"
+    "question": "Mi a Kotlin nyelv fő célja?",
+    "options": [
+      "Android fejlesztés egyszerűsítése",
+      "Weboldalak fejlesztése",
+      "Játékfejlesztés",
+      "Adatbázis-kezelés"
+    ],
+    "answer": "Android fejlesztés egyszerűsítése"
   },
   {
-    "question": "Mi a fővárosa Franciaországnak?",
-    "options": ["Berlin", "Madrid", "Párizs", "Róma"],
-    "answer": "Párizs"
+    "question": "Melyik cég fejlesztette ki a Kotlin nyelvet?",
+    "options": [
+      "Google",
+      "Microsoft",
+      "JetBrains",
+      "Apple"
+    ],
+    "answer": "JetBrains"
+  },
+  {
+    "question": "Melyik évben lett a Kotlin hivatalosan támogatott nyelv az Android fejlesztésben?",
+    "options": [
+      "2017",
+      "2015",
+      "2018",
+      "2016"
+    ],
+    "answer": "2017"
+  },
+  {
+    "question": "Melyik kulcsszóval lehet egy változót deklarálni, amelynek értéke nem változtatható meg Kotlinban?",
+    "options": [
+      "var",
+      "const",
+      "final",
+      "val"
+    ],
+    "answer": "val"
+  },
+  {
+    "question": "Melyik Kotlin típus kezeli a null értékeket?",
+    "options": [
+      "Int?",
+      "String",
+      "Boolean",
+      "Float"
+    ],
+    "answer": "Int?"
+  },
+  {
+    "question": "Melyik szintaxis helyes egy funkció deklarálására Kotlinban?",
+    "options": [
+      "fun functionName()",
+      "def functionName()",
+      "function functionName()",
+      "fn functionName()"
+    ],
+    "answer": "fun functionName()"
+  },
+  {
+    "question": "Mi a Kotlin nyelvben a 'null safety' célja?",
+    "options": [
+      "Null referenciák elkerülése",
+      "Null értékek kezelése",
+      "Memória optimalizálás",
+      "Gyorsabb futási idő elérése"
+    ],
+    "answer": "Null referenciák elkerülése"
+  },
+  {
+    "question": "Hogyan jelöljük a kiterjesztési függvényeket Kotlinban?",
+    "options": [
+      "extension fun",
+      "fun <ClassName>.",
+      "fun ClassName.",
+      "expand fun"
+    ],
+    "answer": "fun ClassName."
+  },
+  {
+    "question": "Melyik kulcsszóval definiálunk egy interfészt Kotlinban?",
+    "options": [
+      "interface",
+      "implements",
+      "class",
+      "extend"
+    ],
+    "answer": "interface"
+  },
+  {
+    "question": "Mi a neve annak a Kotlin funkciónak, amely lehetővé teszi a kódrészletek késleltetett végrehajtását?",
+    "options": [
+      "suspend function",
+      "delay function",
+      "late function",
+      "async function"
+    ],
+    "answer": "suspend function"
   }
 ]
